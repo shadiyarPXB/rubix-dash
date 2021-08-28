@@ -1,0 +1,663 @@
+[
+    {
+        "inputs": [
+            {
+                "internalType": "address payable",
+                "name": "_wBNBAddress",
+                "type": "address"
+            },
+            {
+                "internalType": "contract IVRF",
+                "name": "_VRF",
+                "type": "address"
+            },
+            {
+                "internalType": "contract IBEP20",
+                "name": "_RBX",
+                "type": "address"
+            },
+            {
+                "internalType": "contract IBEP20",
+                "name": "_wBNB",
+                "type": "address"
+            },
+            {
+                "internalType": "address",
+                "name": "_DEV",
+                "type": "address"
+            },
+            {
+                "internalType": "address",
+                "name": "_STAKING",
+                "type": "address"
+            },
+            {
+                "internalType": "contract ISTAKE",
+                "name": "_STAKING2",
+                "type": "address"
+            }
+        ],
+        "stateMutability": "nonpayable",
+        "type": "constructor"
+    },
+    {
+        "anonymous": false,
+        "inputs": [
+            {
+                "indexed": true,
+                "internalType": "address",
+                "name": "player",
+                "type": "address"
+            },
+            {
+                "indexed": false,
+                "internalType": "uint256",
+                "name": "_fromNumber",
+                "type": "uint256"
+            },
+            {
+                "indexed": false,
+                "internalType": "uint256",
+                "name": "_toNmber",
+                "type": "uint256"
+            },
+            {
+                "indexed": false,
+                "internalType": "uint256",
+                "name": "roundID",
+                "type": "uint256"
+            }
+        ],
+        "name": "BuyTicketsWithDiscount",
+        "type": "event"
+    },
+    {
+        "anonymous": false,
+        "inputs": [
+            {
+                "indexed": true,
+                "internalType": "address",
+                "name": "player",
+                "type": "address"
+            },
+            {
+                "indexed": false,
+                "internalType": "uint256",
+                "name": "_fromNumber",
+                "type": "uint256"
+            },
+            {
+                "indexed": false,
+                "internalType": "uint256",
+                "name": "_toNmber",
+                "type": "uint256"
+            },
+            {
+                "indexed": false,
+                "internalType": "uint256",
+                "name": "roundID",
+                "type": "uint256"
+            }
+        ],
+        "name": "BuyTicketsWithoutDiscount",
+        "type": "event"
+    },
+    {
+        "anonymous": false,
+        "inputs": [
+            {
+                "indexed": true,
+                "internalType": "address",
+                "name": "",
+                "type": "address"
+            }
+        ],
+        "name": "Claim",
+        "type": "event"
+    },
+    {
+        "anonymous": false,
+        "inputs": [
+            {
+                "indexed": false,
+                "internalType": "uint256",
+                "name": "roundID",
+                "type": "uint256"
+            }
+        ],
+        "name": "DrawLuckyNumbers",
+        "type": "event"
+    },
+    {
+        "anonymous": false,
+        "inputs": [
+            {
+                "indexed": false,
+                "internalType": "uint256",
+                "name": "newRBXFee",
+                "type": "uint256"
+            },
+            {
+                "indexed": false,
+                "internalType": "uint256",
+                "name": "neBNBFee",
+                "type": "uint256"
+            }
+        ],
+        "name": "FeeChanged",
+        "type": "event"
+    },
+    {
+        "anonymous": false,
+        "inputs": [
+            {
+                "indexed": true,
+                "internalType": "address",
+                "name": "previousOwner",
+                "type": "address"
+            },
+            {
+                "indexed": true,
+                "internalType": "address",
+                "name": "newOwner",
+                "type": "address"
+            }
+        ],
+        "name": "OwnershipTransferred",
+        "type": "event"
+    },
+    {
+        "anonymous": false,
+        "inputs": [],
+        "name": "RandomNumberGenerator",
+        "type": "event"
+    },
+    {
+        "anonymous": false,
+        "inputs": [
+            {
+                "indexed": false,
+                "internalType": "address",
+                "name": "_NewStakingAddress",
+                "type": "address"
+            }
+        ],
+        "name": "newStakingAddress",
+        "type": "event"
+    },
+    {
+        "inputs": [
+            {
+                "internalType": "address",
+                "name": "_address",
+                "type": "address"
+            }
+        ],
+        "name": "_balanceOf",
+        "outputs": [
+            {
+                "internalType": "uint256",
+                "name": "_RBX",
+                "type": "uint256"
+            },
+            {
+                "internalType": "uint256",
+                "name": "BNB",
+                "type": "uint256"
+            }
+        ],
+        "stateMutability": "view",
+        "type": "function"
+    },
+    {
+        "inputs": [
+            {
+                "internalType": "uint256",
+                "name": "_RBX",
+                "type": "uint256"
+            },
+            {
+                "internalType": "uint256",
+                "name": "_BNB",
+                "type": "uint256"
+            }
+        ],
+        "name": "addFundsToPool",
+        "outputs": [],
+        "stateMutability": "payable",
+        "type": "function"
+    },
+    {
+        "inputs": [
+            {
+                "internalType": "uint256",
+                "name": "QTY",
+                "type": "uint256"
+            }
+        ],
+        "name": "buyWithDiscount",
+        "outputs": [
+            {
+                "internalType": "uint8",
+                "name": "success",
+                "type": "uint8"
+            }
+        ],
+        "stateMutability": "nonpayable",
+        "type": "function"
+    },
+    {
+        "inputs": [
+            {
+                "internalType": "uint256",
+                "name": "QTY",
+                "type": "uint256"
+            }
+        ],
+        "name": "buyWithoutDiscount",
+        "outputs": [
+            {
+                "internalType": "uint8",
+                "name": "success",
+                "type": "uint8"
+            }
+        ],
+        "stateMutability": "payable",
+        "type": "function"
+    },
+    {
+        "inputs": [],
+        "name": "claim",
+        "outputs": [
+            {
+                "internalType": "bool",
+                "name": "success",
+                "type": "bool"
+            }
+        ],
+        "stateMutability": "nonpayable",
+        "type": "function"
+    },
+    {
+        "inputs": [],
+        "name": "drawLuckyNumbers",
+        "outputs": [
+            {
+                "internalType": "bool",
+                "name": "",
+                "type": "bool"
+            }
+        ],
+        "stateMutability": "nonpayable",
+        "type": "function"
+    },
+    {
+        "inputs": [],
+        "name": "getActivePool",
+        "outputs": [
+            {
+                "internalType": "uint256",
+                "name": "",
+                "type": "uint256"
+            }
+        ],
+        "stateMutability": "view",
+        "type": "function"
+    },
+    {
+        "inputs": [],
+        "name": "getFullPot",
+        "outputs": [
+            {
+                "internalType": "uint256",
+                "name": "_RBX",
+                "type": "uint256"
+            },
+            {
+                "internalType": "uint256",
+                "name": "BNB",
+                "type": "uint256"
+            }
+        ],
+        "stateMutability": "view",
+        "type": "function"
+    },
+    {
+        "inputs": [],
+        "name": "getNewRandomNumber",
+        "outputs": [],
+        "stateMutability": "nonpayable",
+        "type": "function"
+    },
+    {
+        "inputs": [
+            {
+                "internalType": "uint256",
+                "name": "ticketID",
+                "type": "uint256"
+            }
+        ],
+        "name": "getTicketData",
+        "outputs": [
+            {
+                "internalType": "address",
+                "name": "player",
+                "type": "address"
+            },
+            {
+                "internalType": "uint256",
+                "name": "ticketsPurchased",
+                "type": "uint256"
+            },
+            {
+                "internalType": "uint256[4]",
+                "name": "LuckyNumbers",
+                "type": "uint256[4]"
+            },
+            {
+                "internalType": "uint256",
+                "name": "Round",
+                "type": "uint256"
+            }
+        ],
+        "stateMutability": "view",
+        "type": "function"
+    },
+    {
+        "inputs": [
+            {
+                "internalType": "uint256",
+                "name": "ROUND_NUMBER",
+                "type": "uint256"
+            }
+        ],
+        "name": "getWinningNumbers",
+        "outputs": [
+            {
+                "internalType": "uint256",
+                "name": "",
+                "type": "uint256"
+            },
+            {
+                "internalType": "uint256",
+                "name": "",
+                "type": "uint256"
+            },
+            {
+                "internalType": "uint256",
+                "name": "",
+                "type": "uint256"
+            },
+            {
+                "internalType": "uint256",
+                "name": "",
+                "type": "uint256"
+            }
+        ],
+        "stateMutability": "view",
+        "type": "function"
+    },
+    {
+        "inputs": [
+            {
+                "internalType": "uint256",
+                "name": "ROUND_ID",
+                "type": "uint256"
+            }
+        ],
+        "name": "getlotteryInfo",
+        "outputs": [
+            {
+                "internalType": "uint256",
+                "name": "_TICKETS_SOLD",
+                "type": "uint256"
+            },
+            {
+                "internalType": "uint256",
+                "name": "JackPotRBX",
+                "type": "uint256"
+            },
+            {
+                "internalType": "uint256",
+                "name": "JackpotBNB",
+                "type": "uint256"
+            },
+            {
+                "internalType": "uint256",
+                "name": "regularPotRBX",
+                "type": "uint256"
+            },
+            {
+                "internalType": "uint256",
+                "name": "regularBNB",
+                "type": "uint256"
+            },
+            {
+                "internalType": "uint256",
+                "name": "totalTickets",
+                "type": "uint256"
+            },
+            {
+                "internalType": "uint256",
+                "name": "deadLine",
+                "type": "uint256"
+            }
+        ],
+        "stateMutability": "view",
+        "type": "function"
+    },
+    {
+        "inputs": [
+            {
+                "internalType": "uint256",
+                "name": "ROUND_ID",
+                "type": "uint256"
+            }
+        ],
+        "name": "getlotteryInfo2",
+        "outputs": [
+            {
+                "internalType": "uint256",
+                "name": "oneNumberMatched",
+                "type": "uint256"
+            },
+            {
+                "internalType": "uint256",
+                "name": "twoNumbersMatched",
+                "type": "uint256"
+            },
+            {
+                "internalType": "uint256",
+                "name": "threeNumbersMatched",
+                "type": "uint256"
+            },
+            {
+                "internalType": "uint256",
+                "name": "fourNumbersMatched",
+                "type": "uint256"
+            }
+        ],
+        "stateMutability": "view",
+        "type": "function"
+    },
+    {
+        "inputs": [
+            {
+                "internalType": "uint256",
+                "name": "ROUND_ID",
+                "type": "uint256"
+            }
+        ],
+        "name": "getlotteryInfo3",
+        "outputs": [
+            {
+                "internalType": "uint256[2]",
+                "name": "FIRST_POT",
+                "type": "uint256[2]"
+            },
+            {
+                "internalType": "uint256[2]",
+                "name": "SECOND_POT",
+                "type": "uint256[2]"
+            },
+            {
+                "internalType": "uint256[2]",
+                "name": "THIRD_POT",
+                "type": "uint256[2]"
+            }
+        ],
+        "stateMutability": "view",
+        "type": "function"
+    },
+    {
+        "inputs": [
+            {
+                "internalType": "uint256",
+                "name": "id",
+                "type": "uint256"
+            },
+            {
+                "internalType": "address",
+                "name": "_address",
+                "type": "address"
+            }
+        ],
+        "name": "isPlayer",
+        "outputs": [
+            {
+                "internalType": "bool",
+                "name": "",
+                "type": "bool"
+            }
+        ],
+        "stateMutability": "view",
+        "type": "function"
+    },
+    {
+        "inputs": [
+            {
+                "internalType": "uint256",
+                "name": "ticketID",
+                "type": "uint256"
+            }
+        ],
+        "name": "isWinner",
+        "outputs": [
+            {
+                "internalType": "uint256",
+                "name": "OneNumberPlayed",
+                "type": "uint256"
+            },
+            {
+                "internalType": "uint256",
+                "name": "TwoNumberPlayed",
+                "type": "uint256"
+            },
+            {
+                "internalType": "uint256",
+                "name": "ThreeNumberPlayed",
+                "type": "uint256"
+            },
+            {
+                "internalType": "uint256",
+                "name": "FourNumberPlayed",
+                "type": "uint256"
+            }
+        ],
+        "stateMutability": "view",
+        "type": "function"
+    },
+    {
+        "inputs": [
+            {
+                "internalType": "uint256",
+                "name": "_RBX",
+                "type": "uint256"
+            },
+            {
+                "internalType": "uint256",
+                "name": "_BNB",
+                "type": "uint256"
+            }
+        ],
+        "name": "newFee",
+        "outputs": [],
+        "stateMutability": "nonpayable",
+        "type": "function"
+    },
+    {
+        "inputs": [],
+        "name": "owner",
+        "outputs": [
+            {
+                "internalType": "address",
+                "name": "",
+                "type": "address"
+            }
+        ],
+        "stateMutability": "view",
+        "type": "function"
+    },
+    {
+        "inputs": [],
+        "name": "renounceOwnership",
+        "outputs": [],
+        "stateMutability": "nonpayable",
+        "type": "function"
+    },
+    {
+        "inputs": [
+            {
+                "internalType": "address",
+                "name": "newOwner",
+                "type": "address"
+            }
+        ],
+        "name": "transferOwnership",
+        "outputs": [],
+        "stateMutability": "nonpayable",
+        "type": "function"
+    },
+    {
+        "inputs": [
+            {
+                "internalType": "contract ISTAKE",
+                "name": "_newAddress",
+                "type": "address"
+            },
+            {
+                "internalType": "address",
+                "name": "_newStakingAddress",
+                "type": "address"
+            }
+        ],
+        "name": "updateStakingAddress",
+        "outputs": [],
+        "stateMutability": "nonpayable",
+        "type": "function"
+    },
+    {
+        "inputs": [],
+        "name": "wBNBaddress",
+        "outputs": [
+            {
+                "internalType": "address payable",
+                "name": "",
+                "type": "address"
+            }
+        ],
+        "stateMutability": "view",
+        "type": "function"
+    },
+    {
+        "inputs": [],
+        "name": "wrapBNB",
+        "outputs": [],
+        "stateMutability": "payable",
+        "type": "function"
+    },
+    {
+        "stateMutability": "payable",
+        "type": "receive"
+    }
+]
